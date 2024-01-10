@@ -1,0 +1,50 @@
+﻿@model tıbbitakipsistemi.Models.Randevu
+
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Ekle", "Randevular", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Kullanici Id</label>
+                    <input type="text" name="KullaniciId" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Tarih</label>
+                    <input type="datetime-local" name="Tarih" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Hastane</label>
+                    <input type="text" name="Hastane" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Bölüm</label>
+                    <input type="text" name="Bölüm" class="form-control" />
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}
+
+
+

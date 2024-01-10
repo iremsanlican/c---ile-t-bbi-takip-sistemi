@@ -1,0 +1,41 @@
+﻿
+
+@model tıbbitakipsistemi.Models.Hastalik
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Kullanıcı Id</label>
+                        <input type="text" name="KullaniciId" class="form-control" value="@Model.KullaniciId" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Tarih </label>
+                        <input type="datetime-local" name="Tarih" class="form-control" value="@Model.Tarih" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hastalık </label>
+                        <input type="text" name="Hastalik1" class="form-control" value="@Model.Hastalik1" />
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary">Düzenle</button>
+                    <a href="/Hastalıklar/Index">Hastalık Listesi</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Custom Styles */
+        .navbar {
+            background-color: #ff0000; /* Kırmızı arkaplan */
+            border: 1px solid #e60000; /* Kırmızı kenarlık */
+            border-radius: 5px; /* Köşeleri yuvarla */
+        }
+
+        .navbar-brand {
+            color: #ffffff !important; /* Beyaz metin rengi, !important ile önceliği artırın */
+        }
+
+        .navbar-nav > li > a {
+            color: #ffffff !important; /* Beyaz metin rengi, !important ile önceliği artırın */
+        }
+
+            .navbar-nav > li > a:hover,
+            .navbar-nav > li > a:focus {
+                background-color: #cc0000; /* Hover/Focus durumunda arkaplan rengi */
+            }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Tıbbi Takip Sistemi</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                @if (User.IsInRole("A"))
+                {
+                    <li><a href="/Kullanıcı/Index">Kullanıcılar</a></li>
+                    <li><a href="/Hastalıklar/Index">Hastalıklar</a></li>
+                    <li><a href="" style="color:white">Doktor: @Session["Ad"] @Session["Soyad"] </a></li>
+                    <li><a href="/Ilaclar/Index">Düzenli Kullanılan İlaçlar</a></li>
+                    <li><a href="/Tahliller/Index">Tahliller</a></li>
+                    <li><a href="/Randevular/Index">Randevularım</a></li>
+                    <li><a href="/Alerji/Index">Alerjilerim</a></li>
+                    <li><a href="/account/logout">çıkış yap</a></li>
+                }
+                @if (User.IsInRole("k"))
+                {
+                    <li><a href="/Hastalıklar/Index">Hastalıklar</a></li>
+                    <li><a href="/Ilaclar/Index">Düzenli Kullanılan İlaçlar</a></li>
+                    <li><a href="/Tahliller/Index">Tahliller</a></li>
+                    <li><a href="/Randevular/Index">Randevularım</a></li>
+                    <li><a href="/Alerji/Index">Alerjilerim</a></li>
+                    <li><a href="/account/logout">çıkış yap</a></li>
+                }
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

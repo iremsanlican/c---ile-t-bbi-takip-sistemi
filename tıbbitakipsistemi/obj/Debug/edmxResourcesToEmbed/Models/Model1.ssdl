@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TıbbiTakipSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alerji">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" />
+    <Property Name="Alerji" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hastalik">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="Hastalik" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ilac">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" />
+    <Property Name="Ilac" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlacDozu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TC" Type="nvarchar" MaxLength="11" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Parola" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rol" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Randevu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="Hastane" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bölüm" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tahlil">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TahlilBilgisi" Type="nvarchar" MaxLength="50" />
+    <Property Name="TahlilSonuc" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Alerji_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Alerji" Type="Self.Alerji" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Alerji">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hastalik_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Hastalik" Type="Self.Hastalik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Hastalik">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ilac_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Ilac" Type="Self.Ilac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ilac">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Randevu_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Randevu">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tahlil_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Tahlil" Type="Self.Tahlil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tahlil">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TıbbiTakipSistemiModelStoreContainer">
+    <EntitySet Name="Alerji" EntityType="Self.Alerji" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hastalik" EntityType="Self.Hastalik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ilac" EntityType="Self.Ilac" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tahlil" EntityType="Self.Tahlil" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Alerji_Kullanici" Association="Self.FK_Alerji_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Alerji" EntitySet="Alerji" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hastalik_Kullanici" Association="Self.FK_Hastalik_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Hastalik" EntitySet="Hastalik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ilac_Kullanici" Association="Self.FK_Ilac_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Ilac" EntitySet="Ilac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Randevu_Kullanici" Association="Self.FK_Randevu_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Randevu" EntitySet="Randevu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tahlil_Kullanici" Association="Self.FK_Tahlil_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Tahlil" EntitySet="Tahlil" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

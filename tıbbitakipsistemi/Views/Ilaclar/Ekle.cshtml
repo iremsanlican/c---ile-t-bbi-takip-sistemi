@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ @using (Html.BeginForm("Ekle", "Ilaclar", FormMethod.Post))
+ {
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Kullanici Id</label>
+                    <input type="text" name="KullaniciId" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label>İLaç</label>
+                    <input type="text" name="Ilac1" class="form-control" />
+
+                </div>
+
+                <div class="form-group">
+                    <label>İLaç Dozu</label>
+                    <input type="text" name="IlacDozu" class="form-control" />
+
+                </div>
+                <button class="btn btn-primary" type="submit">Ekle</button>
+                <a href="/Alerji/Index">Alerji Listesi</a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+ }

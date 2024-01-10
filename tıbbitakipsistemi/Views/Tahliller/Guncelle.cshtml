@@ -1,0 +1,45 @@
+﻿@model tıbbitakipsistemi.Models.Tahlil
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" name="Tarih" class="form-control" value="@Model.ID" />
+                </div>
+                <div class="form-group">
+                    <label>KullanıcıId</label>
+                    <input type="text" name="Tarih" class="form-control" value="@Model.KullaniciId" />
+                </div>
+
+          <div class="form-group">
+                    <label>Tarih</label>
+                    <input type="datetime" name="Tarih" class="form-control" value="@Model.Tarih" />
+                </div>
+
+                <div class="form-group">
+                    <label>Tahlil Bilgisi</label>
+                    <input type="text" name="TahlilBilgisi" class="form-control" value="@Model.TahlilBilgisi" />
+                </div>
+                <div class="form-group">
+                    <label>Tahlil Sonuç </label>
+                    <input type="checkbox" name="TahlilSonuc" class="form-control" value="@Model.TahlilSonuc" />
+                </div>
+                <button type="submit" class="btn btn-primary">Düzenle</button>
+                <a href="/Tahliller/Index">İlaç Listesi</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+

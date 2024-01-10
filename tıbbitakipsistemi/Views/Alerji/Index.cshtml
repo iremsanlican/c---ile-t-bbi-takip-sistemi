@@ -1,0 +1,80 @@
+﻿@using tıbbitakipsistemi.Models
+@model List<Alerji>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div style="width:25%" float="right">
+            @Html.TextBox("ara", null, new { @class = "form-control", @placeholder = "Alerji adi  arayınız" })
+            <div style="float:right">
+                <input type="submit" name="btn" value="Ara" class="btn btn-info" />
+            </div>
+
+        </div>
+
+    }
+
+</div>
+<br />
+<br />
+
+
+
+@if (User.IsInRole("A"))
+{
+    <a href="/Alerji/Ekle" clss="btn btn-primary">Ekle</a>
+
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+
+                <th>Alerjiler</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Alerji1</td>
+
+                    <td>
+                        <a href="/Alerji/Guncelle/@item.ID" class="btn btn-warning btn-sm" title="Güncelle" role="button">Düzenle</a>
+                    </td>
+                    <td>
+                        <a href="/Alerji/Sil/@item.ID" class="btn btn-warning btn-sm" onclick="return confirm('Silmek istiyor musunuz?')" title="Sil" role="button">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (User.IsInRole("k"))
+{
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+
+                <th>Alerjiler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Kullanici.ID.ToString()==Session["ID"].ToString())
+                {
+                    <tr>
+
+                        <td>@item.Alerji1</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+}

@@ -1,0 +1,78 @@
+﻿@using tıbbitakipsistemi.Models
+@model List<Ilac>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div style="width:25%" float="right">
+            @Html.TextBox("ara", null, new { @class = "form-control", @placeholder = "İlaç adi veya dozajını arayınız" })
+            <div style="float:right">
+                <input type="submit" name="btn" value="Ara" class="btn btn-info" />
+            </div>
+
+        </div>
+
+    }
+
+</div>
+<br />
+<br />
+
+
+@if (User.IsInRole("A"))
+{<a href="/Ilaclar/Ekle" clss="btn btn-primary">Ekle</a>
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+                <th>İlaç</th>
+                <th>İlaç Dozu</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Ilac1</td>
+                    <td>@item.IlacDozu</td>
+                    <td>
+                        <a href="/Ilaclar/Guncelle/@item.ID" class="btn btn-warning btn-sm" title="Güncelle" role="button">Düzenle</a>
+                    </td>
+                    <td>
+                        <a href="/Ilaclar/Sil/@item.ID" class="btn btn-warning btn-sm" onclick="return confirm('Silmek istiyor musunuz?')" title="Sil" role="button">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (User.IsInRole("k"))
+{
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+                <th>İlaç</th>
+                <th>İlaç Dozu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Kullanici.ID.ToString()==Session["ID"].ToString())
+                {
+                    <tr>
+                        <td>@item.Ilac1</td>
+                        <td>@item.IlacDozu</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+}

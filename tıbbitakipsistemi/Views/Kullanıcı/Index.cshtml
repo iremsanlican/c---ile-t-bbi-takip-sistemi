@@ -1,0 +1,39 @@
+﻿@using tıbbitakipsistemi.Models
+@model List<Kullanici>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<table class="table table-bordered">
+    <thead style="background-color: lightblue;">
+        <tr>
+
+            <th>ID</th>
+            <th>TC</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>@item.ID</td>
+                <td>@item.TC</td>
+                <td>@item.Ad</td>
+                <td>@item.Soyad</td>
+
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+

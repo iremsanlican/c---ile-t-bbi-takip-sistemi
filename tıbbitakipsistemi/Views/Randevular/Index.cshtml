@@ -1,0 +1,89 @@
+﻿@using tıbbitakipsistemi.Models
+@model List<Randevu>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div style="width:25%" float="left">
+            @Html.TextBox("ara", null, new { @class = "form-control", @placeholder = "randevu bilgileri için hastaneveya bölüm arayınız arayınız" })
+            <div style="float:right">
+                <input type="submit" name="btn" value="Ara" class="btn btn-info" />
+            </div>
+
+        </div>
+
+    }
+
+</div>
+<br />
+
+<a href="/Randevular/Ekle" class="btn btn-primary">Randevu Al</a>
+<a href="/Randevular/Sil" class="btn btn-danger">Randevu İptal Et</a>
+
+<br />
+<br />
+
+@if (User.IsInRole("A"))
+{
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+                <th>Tarih</th>
+                <th>Hastane</th>
+                <th>Bölüm</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Tarih</td>
+                    <td>@item.Hastane    </td>
+                    <th>@item.Bölüm</th>
+                    <td>
+                        <a href="/Randevular/Guncelle/@item.ID" class="btn btn-warning btn-sm" title="Güncelle" role="button">Düzenle</a>
+                    </td>
+                    <td>
+                        <a href="/Randevular/Sil/@item.ID" class="btn btn-warning btn-sm" onclick="return confirm('Silmek istiyor musunuz?')" title="Sil" role="button">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (User.IsInRole("k"))
+{
+    <table class="table table-bordered">
+        <thead style="background-color: lightblue;">
+            <tr>
+                <th>Tarih</th>
+                <th>Hastane</th>
+                <th>Bölüm</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Kullanici != null && Session["ID"] != null && item.Kullanici.ID.ToString() == Session["ID"].ToString())
+                {
+                    <tr>
+                        <td>@item.Tarih</td>
+                        <td>@item.Hastane    </td>
+                        <th>@item.Bölüm</th>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+}
+
+
+

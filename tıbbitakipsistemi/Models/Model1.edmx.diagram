@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa28c16ce6784f65aa508c1b8e13ea36" Name="Diagram1">
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Alerji" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Hastalik" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Ilac" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Kullanici" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Randevu" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TıbbiTakipSistemiModel.Tahlil" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="TıbbiTakipSistemiModel.FK_Alerji_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TıbbiTakipSistemiModel.FK_Hastalik_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TıbbiTakipSistemiModel.FK_Ilac_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TıbbiTakipSistemiModel.FK_Randevu_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TıbbiTakipSistemiModel.FK_Tahlil_Kullanici" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
